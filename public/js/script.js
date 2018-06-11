@@ -5,7 +5,7 @@ let hiHats = Array(16).fill(false);
 let rideCymbals = Array(16).fill(false);
 
 const toggleDrum = (arrayName, index) => {
-  if (typeof index !== number || index > 15) {
+  if (typeof index !== 'number' || index > 15) {
     return;
   }
 
