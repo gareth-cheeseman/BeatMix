@@ -33,10 +33,6 @@ const toggleDrum = (arrayName, index) => {
 };
 
 const clear = arrayName => {
-  if (!arrayName) {
-    return;
-  }
-
   switch (arrayName) {
     case 'kicks':
       kicks = Array(16).fill(false);
