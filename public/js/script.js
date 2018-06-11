@@ -9,24 +9,46 @@ const toggleDrum = (arrayName, index) => {
     return;
   }
 
+  const flipArrayAt = (array, index) => {
+    array[index] === false ? (array[index] = true) : (array[index] = false);
+  };
+
   switch (arrayName) {
     case 'kicks':
-      kicks[index] === false ? (kicks[index] = true) : (kicks[index] = false);
+      flipArrayAt(kicks, index);
       break;
     case 'snares':
-      snares[index] === false
-        ? (snares[index] = true)
-        : (snares[index] = false);
+      flipArrayAt(snares, index);
       break;
     case 'hiHats':
-      hiHats[index] === false
-        ? (hiHats[index] = true)
-        : (hiHats[index] = false);
+      flipArrayAt(hiHats, index);
       break;
     case 'rideCymbals':
-      rideCymbals[index] === false
-        ? (rideCymbals[index] = true)
-        : (rideCymbals[index] = false);
+      flipArrayAt(rideCymbals, index);
+      break;
+    default:
+      return;
+      break;
+  }
+};
+
+const clear = arrayName => {
+  if (!arrayName) {
+    return;
+  }
+
+  switch (arrayName) {
+    case 'kicks':
+      kicks = Array(16).fill(false);
+      break;
+    case 'snares':
+      snares = Array(16).fill(false);
+      break;
+    case 'hiHats':
+      hiHats = Array(16).fill(false);
+      break;
+    case 'rideCymbals':
+      rideCymbals = Array(16).fill(false);
       break;
     default:
       return;
