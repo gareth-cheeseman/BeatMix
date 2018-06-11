@@ -1,8 +1,8 @@
 // Drum Arrays
-let kicks = [].fill(false, 0, 16);
-let snares = [].fill(false, 0, 16);
-let hiHats = [].fill(false, 0, 16);
-let rideCymbals = [].fill(false, 0, 16);
+let kicks = Array(16).fill(false);
+let snares = Array(16).fill(false);
+let hiHats = Array(16).fill(false);
+let rideCymbals = Array(16).fill(false);
 
 const toggleDrum = (arrayName, index) => {
   if (typeof index !== number || index > 15) {
