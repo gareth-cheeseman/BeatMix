@@ -13,27 +13,13 @@ const toggleDrum = (arrayName, index) => {
     return;
   }
 
-  switch (arrayName) {
-    case 'kicks':
-      flipArrayAt(kicks, index);
-      break;
-    case 'snares':
-      flipArrayAt(snares, index);
-      break;
-    case 'hiHats':
-      flipArrayAt(hiHats, index);
-      break;
-    case 'rideCymbals':
-      flipArrayAt(rideCymbals, index);
-      break;
-    default:
-      return;
-      break;
-  }
+  flipArrayAt(getArrayCalled(arrayName), index);
 };
 
 const clear = arrayName => {
-  selectArray(arrayName, setArrayAllToFalse);
+  if (isValid(arrayName)) {
+    setArrayAllToFalse(getArrayCalled(arrayName));
+  }
 };
 
 const setArrayAllToFalse = array => {
@@ -49,25 +35,31 @@ const flipItemsInArray = array => {
 };
 
 const invert = arrayName => {
-  selectArray(arrayName, flipItemsInArray);
+  flipItemsInArray(getArrayCalled(arrayName));
 };
 
-const selectArray = (arrayName, aFunction) => {
+const getArrayCalled = arrayName => {
   switch (arrayName) {
     case 'kicks':
-      aFunction(kicks);
+      return kicks;
       break;
     case 'snares':
-      aFunction(snares);
+      return snares;
       break;
     case 'hiHats':
-      aFunction(hiHats);
+      return hiHats;
       break;
     case 'rideCymbals':
-      aFunction(rideCymbals);
+      return rideCymbals;
       break;
     default:
       return;
       break;
+  }
+};
+
+const isValid = input => {
+  if (input) {
+    return true;
   }
 };
