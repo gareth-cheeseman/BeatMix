@@ -18,14 +18,8 @@ const toggleDrum = (arrayName, index) => {
 
 const clear = arrayName => {
   if (isValid(arrayName)) {
-    setArrayAllToFalse(getArrayCalled(arrayName));
+    getArrayCalled(arrayName).fill(false);
   }
-};
-
-const setArrayAllToFalse = array => {
-  array.forEach((part, index) => {
-    array[index] = false;
-  });
 };
 
 const flipItemsInArray = array => {
