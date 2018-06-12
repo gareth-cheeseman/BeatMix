@@ -17,8 +17,9 @@ const toggleDrum = (arrayName, index) => {
 };
 
 const clear = arrayName => {
-  if (isValid(arrayName)) {
-    getArrayCalled(arrayName).fill(false);
+  const array = getArrayCalled(arrayName);
+  if (array) {
+    array.fill(false);
   }
 };
 
@@ -29,7 +30,10 @@ const flipItemsInArray = array => {
 };
 
 const invert = arrayName => {
-  flipItemsInArray(getArrayCalled(arrayName));
+  const array = getArrayCalled(arrayName);
+  if (array) {
+    flipItemsInArray(array);
+  }
 };
 
 const getArrayCalled = arrayName => {

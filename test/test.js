@@ -23,10 +23,9 @@ const drums = {
 };
 
 describe('Beat Mix Problem Set - script.js file', () => {
-
   let drumArrays;
   let code;
-  before('load script.js', (done) => {
+  before('load script.js', done => {
     fs.readFile('public/js/script.js', (err, data) => {
       if (err) {
         throw err;
@@ -39,7 +38,6 @@ describe('Beat Mix Problem Set - script.js file', () => {
   });
 
   describe('Drum Arrays', () => {
-    
     it('a variable called kicks should exist', () => {
       expect(kicks).to.not.be.undefined;
     });
@@ -58,25 +56,33 @@ describe('Beat Mix Problem Set - script.js file', () => {
 
     it('the kicks array should have 16 elements initialized to false.', () => {
       expect(kicks.length).to.be.equal(16);
-      const containsAllFalseyElements = kicks.every((element) => element === false);
+      const containsAllFalseyElements = kicks.every(
+        element => element === false
+      );
       expect(containsAllFalseyElements).to.be.true;
     });
 
     it('the snares array should have 16 elements initialized to false.', () => {
       expect(snares.length).to.be.equal(16);
-      const containsAllFalseyElements = snares.every((element) => element === false);
+      const containsAllFalseyElements = snares.every(
+        element => element === false
+      );
       expect(containsAllFalseyElements).to.be.true;
     });
 
     it('the hiHats array should have 16 elements initialized to false.', () => {
       expect(hiHats.length).to.be.equal(16);
-      const containsAllFalseyElements = hiHats.every((element) => element === false);
+      const containsAllFalseyElements = hiHats.every(
+        element => element === false
+      );
       expect(containsAllFalseyElements).to.be.true;
     });
 
     it('the rideCymbals array should have 16 elements initialized to false.', () => {
       expect(rideCymbals.length).to.be.equal(16);
-      const containsAllFalseyElements = rideCymbals.every((element) => element === false);
+      const containsAllFalseyElements = rideCymbals.every(
+        element => element === false
+      );
       expect(containsAllFalseyElements).to.be.true;
     });
 
@@ -87,16 +93,14 @@ describe('Beat Mix Problem Set - script.js file', () => {
         }
       }
     });
-
   });
 
   describe('toggleDrum() function', () => {
-
     let clonedDrums;
     beforeEach('reset drum arrays', () => {
       drumArrays = [drums.kicks, drums.snares, drums.hiHats, drums.rideCymbals];
-      drumArrays.forEach((drumArray) => drumArray.fill(false));
-      clonedDrums = drumArrays.map((arr) => [...arr]);
+      drumArrays.forEach(drumArray => drumArray.fill(false));
+      clonedDrums = drumArrays.map(arr => [...arr]);
     });
 
     it('should exist and be a function', () => {
@@ -125,7 +129,9 @@ describe('Beat Mix Problem Set - script.js file', () => {
     it('should not mutate any arrays with negative index arguments', () => {
       toggleDrum('snares', -15);
       clonedDrums.forEach((arr, index) => {
-        expect(Object.keys(arr)).to.be.deep.equal(Object.keys(drumArrays[index]));
+        expect(Object.keys(arr)).to.be.deep.equal(
+          Object.keys(drumArrays[index])
+        );
       });
     });
 
@@ -157,7 +163,6 @@ describe('Beat Mix Problem Set - script.js file', () => {
         if (index === 0) return;
         expect(val).to.be.false;
       });
-
     });
 
     it('can toggle true -> false and false -> true', () => {
@@ -192,21 +197,20 @@ describe('Beat Mix Problem Set - script.js file', () => {
   });
 
   describe('clear() function', () => {
-
     let clonedDrums;
     beforeEach('reset drum arrays', () => {
       drumArrays = [drums.kicks, drums.snares, drums.hiHats, drums.rideCymbals];
-      drumArrays.forEach((drumArray) => drumArray.fill(false));
-      clonedDrums = drumArrays.map((arr) => [...arr]);
+      drumArrays.forEach(drumArray => drumArray.fill(false));
+      clonedDrums = drumArrays.map(arr => [...arr]);
     });
 
     it('should exist and be a function', () => {
       expect(clear).to.exist;
       expect(clear).to.be.an.instanceof(Function);
     });
-
+    debugger;
     it('should perform no array mutation when called with no arguments', () => {
-      drumArrays.forEach((drumArray) => drumArray.fill(true));
+      drumArrays.forEach(drumArray => drumArray.fill(true));
       const trueArray = new Array(16).fill(true);
       clear();
       expect(drums.kicks).to.be.deep.equal(trueArray);
@@ -216,7 +220,7 @@ describe('Beat Mix Problem Set - script.js file', () => {
     });
 
     it('should not perform any mutation when called with an invalid array name', () => {
-      drumArrays.forEach((drumArray) => drumArray.fill(true));
+      drumArrays.forEach(drumArray => drumArray.fill(true));
       const trueArray = new Array(16).fill(true);
       clear('nonExistentArray');
       expect(drums.kicks).to.be.deep.equal(trueArray);
@@ -226,7 +230,7 @@ describe('Beat Mix Problem Set - script.js file', () => {
     });
 
     it('mutates only a single array at a time', () => {
-      drumArrays.forEach((drumArray) => drumArray.fill(true));
+      drumArrays.forEach(drumArray => drumArray.fill(true));
       const trueArray = new Array(16).fill(true);
       clear('kicks');
       expect(drums.kicks).to.be.not.deep.equal(trueArray);
@@ -236,7 +240,7 @@ describe('Beat Mix Problem Set - script.js file', () => {
     });
 
     it('should set all values in an array to false when called with a valid array name', () => {
-      drumArrays.forEach((drumArray) => drumArray.fill(true));
+      drumArrays.forEach(drumArray => drumArray.fill(true));
       const falseArray = new Array(16).fill(false);
       clear('kicks');
       expect(drums.kicks).to.be.deep.equal(falseArray);
@@ -247,16 +251,14 @@ describe('Beat Mix Problem Set - script.js file', () => {
       clear('rideCymbals');
       expect(drums.rideCymbals).to.be.deep.equal(falseArray);
     });
-
   });
 
   describe('invert() function', () => {
-
     let clonedDrums;
     beforeEach('reset drum arrays', () => {
       drumArrays = [drums.kicks, drums.snares, drums.hiHats, drums.rideCymbals];
-      drumArrays.forEach((drumArray) => drumArray.fill(false));
-      clonedDrums = drumArrays.map((arr) => [...arr]);
+      drumArrays.forEach(drumArray => drumArray.fill(false));
+      clonedDrums = drumArrays.map(arr => [...arr]);
     });
 
     it('should exist and be a function', () => {
@@ -265,7 +267,7 @@ describe('Beat Mix Problem Set - script.js file', () => {
     });
 
     it('should perform no array mutation when called with no arguments', () => {
-      drumArrays.forEach((drumArray) => drumArray.fill(true));
+      drumArrays.forEach(drumArray => drumArray.fill(true));
       const trueArray = new Array(16).fill(true);
       invert();
       expect(drums.kicks).to.be.deep.equal(trueArray);
@@ -275,7 +277,7 @@ describe('Beat Mix Problem Set - script.js file', () => {
     });
 
     it('should not perform any mutation when called with an invalid array name', () => {
-      drumArrays.forEach((drumArray) => drumArray.fill(true));
+      drumArrays.forEach(drumArray => drumArray.fill(true));
       const trueArray = new Array(16).fill(true);
       invert('nonExistentArray');
       expect(drums.kicks).to.be.deep.equal(trueArray);
@@ -306,25 +308,20 @@ describe('Beat Mix Problem Set - script.js file', () => {
       trueArray[0] = false;
       expect(drums.rideCymbals).to.be.deep.equal(trueArray);
     });
-
   });
-
 });
 
 describe('Preset function - presetHandler.js file', () => {
-
   let presets = require('../presets');
   const presetHandler = require('../presetHandler');
 
   describe('presetHandler() function', () => {
-
     it('should exist and be a function', () => {
       expect(presetHandler).to.exist;
       expect(presetHandler).to.be.an.instanceof(Function);
     });
 
-    describe('method === \'GET\'', () => {
-
+    describe("method === 'GET'", () => {
       it('should return an array', function() {
         expect(presetHandler('GET')).to.be.an.instanceOf(Array);
       });
@@ -343,11 +340,9 @@ describe('Preset function - presetHandler.js file', () => {
         expect(presetHandler('GET', 1240)[0]).to.equal(404);
         expect(presetHandler('GET', -1)[0]).to.equal(404);
       });
-      
     });
 
-    describe('method === \'PUT\'', () => {
-
+    describe("method === 'PUT'", () => {
       it('should return an array', function() {
         expect(presetHandler('PUT')).to.be.an.instanceOf(Array);
       });
@@ -358,7 +353,9 @@ describe('Preset function - presetHandler.js file', () => {
 
       it('should return the updated preset array as the second element', function() {
         const testPreset = ['newTest', 'newTest'];
-        expect(presetHandler('PUT', 0, testPreset)[1]).to.deep.equal(testPreset);
+        expect(presetHandler('PUT', 0, testPreset)[1]).to.deep.equal(
+          testPreset
+        );
       });
 
       it('should set the preset at the correct index with the new presetArray', function() {
@@ -371,20 +368,17 @@ describe('Preset function - presetHandler.js file', () => {
         expect(presetHandler('PUT', 1240)[0]).to.equal(404);
         expect(presetHandler('PUT', -1)[0]).to.equal(404);
       });
-
     });
 
     describe('invalid method argument', () => {
-      it('should return 400 as the first element if called without a \'GET\' or \'PUT\' method', () => {
+      it("should return 400 as the first element if called without a 'GET' or 'PUT' method", () => {
         expect(presetHandler('invalid')[0]).to.equal(400);
       });
     });
-
   });
 
   // Remove the 'x' before 'describe' to run these tests when you want to attempt the bonus!
   xdescribe('BONUS: getNeighborPads() function', () => {
-
     it('should exist and be a function', () => {
       getNeighborPads;
       expect(getNeighborPads).to.be.an.instanceof(Function);
@@ -444,7 +438,5 @@ describe('Preset function - presetHandler.js file', () => {
       expect(result).to.include.something.that.deep.equals([0, 2]);
       expect(result.length).to.equal(3);
     });
-
   });
-
 });
