@@ -71,7 +71,7 @@ const getNeighborPads = (x, y, size) => {
   const right = [x + 1, y];
   const top = [x, y + 1];
   const bottom = [x, y - 1];
-  debugger;
+
   addToNeighorArray(left, array, size);
   addToNeighorArray(right, array, size);
   addToNeighorArray(top, array, size);
@@ -81,7 +81,7 @@ const getNeighborPads = (x, y, size) => {
 };
 
 const isWithinGrid = (x, size) => {
-  return 0 < x && x <= size;
+  return 0 <= x && x < size;
 };
 
 const addToNeighorArray = (coordinates, array, size) => {

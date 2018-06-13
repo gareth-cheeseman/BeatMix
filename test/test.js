@@ -208,7 +208,6 @@ describe('Beat Mix Problem Set - script.js file', () => {
       expect(clear).to.exist;
       expect(clear).to.be.an.instanceof(Function);
     });
-    debugger;
     it('should perform no array mutation when called with no arguments', () => {
       drumArrays.forEach(drumArray => drumArray.fill(true));
       const trueArray = new Array(16).fill(true);
