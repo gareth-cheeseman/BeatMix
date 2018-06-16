@@ -9,11 +9,13 @@ const flipArrayAt = (array, index) => {
 };
 
 const toggleDrum = (arrayName, index) => {
-  if (typeof index !== 'number' || index < 0 || index > 15) {
+  if (typeof index === 'undefined' || !(0 <= index && index < 16)) {
     return;
   }
 
-  flipArrayAt(getArrayCalled(arrayName), index);
+  const drums = getArrayCalled(arrayName);
+
+  flipArrayAt(drums, index);
 };
 
 const clear = arrayName => {
